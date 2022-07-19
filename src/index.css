@@ -1,13 +1,8 @@
+@import url('https://fonts.googleapis.com/css2?family=Alegreya+Sans&family=Libre+Baskerville&family=Montserrat+Alternates:wght@200&display=swap');
+
 body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  font-family: 'Montserrat Alternates', sans-serif;
+  background-color: #131722 !important;
+  color: #fff !important;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
-}
