@@ -1,5 +1,5 @@
 import React from 'react'
-import {Link} from'react-router-dom'
+import {Link,NavLink} from'react-router-dom'
 export default function Navbar() {
   return (
     <>
@@ -12,26 +12,50 @@ export default function Navbar() {
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
             <li className="nav-item">
-              <Link className="nav-link active" aria-current="page" to='Home'>Home</Link>
+              <NavLink  style={({isActive})=>{return{
+                backgroundColor: isActive? "lightslategrey":"",
+                borderRadius:'5%',
+                
+              }}}
+              className="nav-link active" aria-current="page" to='Home'>Home</NavLink>
             </li>
             <li className="nav-item">
-              <Link className="nav-link active" aria-current="page" to='Movies'>Movies</Link>
-            </li>
-
-            <li className="nav-item">
-              <Link className="nav-link active" aria-current="page" to='Tvshow'>Tvshow</Link>
-            </li>
-
-            <li className="nav-item">
-              <Link className="nav-link active" aria-current="page" to='People'>People</Link>
-            </li>
-
-            <li className="nav-item">
-              <Link className="nav-link active" aria-current="page" to='About'>About</Link>
+              <NavLink  style={({isActive})=>{return{
+                backgroundColor: isActive? "lightslategrey":"",
+                borderRadius:'5%',
+                
+              }}} className="nav-link active" aria-current="page" to='Movies'>Movies</NavLink>
             </li>
 
             <li className="nav-item">
-              <Link className="nav-link active" aria-current="page" to='Network'>Networks</Link>
+              <NavLink  style={({isActive})=>{return{
+                backgroundColor: isActive? "lightslategrey":"",
+                borderRadius:'5%',
+              }}} className="nav-link active" aria-current="page" to='Tvshow'>Tvshow</NavLink>
+            </li>
+
+            <li className="nav-item">
+              <NavLink  style={({isActive})=>{return{
+                backgroundColor: isActive? "lightslategrey":"",
+                borderRadius:'5%',
+                
+              }}} className="nav-link active" aria-current="page" to='People'>People</NavLink>
+            </li>
+
+            <li className="nav-item">
+              <NavLink  style={({isActive})=>{return{
+                backgroundColor: isActive? "lightslategrey":"",
+                borderRadius:'5%',
+                
+              }}} className="nav-link active" aria-current="page" to='About'>About</NavLink>
+            </li>
+
+            <li className="nav-item">
+              <NavLink  style={({isActive})=>{return{
+                backgroundColor: isActive? "lightslategrey":"",
+                borderRadius:'5%',
+                
+              }}} className="nav-link active" aria-current="page" to='Network'>Networks</NavLink>
             </li>
 
 
@@ -52,13 +76,30 @@ export default function Navbar() {
               <i className='fab fa-spotify  mx-2 fa-2x'></i>
             </li>
 
+         
             <li className="nav-item">
-              <Link className="nav-link active" aria-current="page" to='Login'>Login</Link>
+              <NavLink  style={({isActive})=>{return{
+                backgroundColor: isActive? "lightslategrey":"",
+                borderRadius:'5%',
+                
+              }}} className="nav-link active" aria-current="page" to='Register'>Register</NavLink>
+            </li>
+            <li className="nav-item">
+              <NavLink  style={({isActive})=>{return{
+                backgroundColor: isActive? "lightslategrey":"",
+                borderRadius:'5%',
+                
+              }}} className="nav-link active" aria-current="page" to='Login'>Login</NavLink>
             </li>
 
             <li className="nav-item">
-              <Link className="nav-link active" aria-current="page" to='Register'>Register</Link>
+              <NavLink  style={({isActive})=>{return{
+                backgroundColor: isActive? "lightslategrey":"",
+                borderRadius:'5%',
+                
+              }}} className="nav-link active" aria-current="page" to='Logout'>LogOut</NavLink>
             </li>
+
 
 
           </ul>

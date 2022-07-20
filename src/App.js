@@ -12,6 +12,7 @@ import People from './People/People';
 import Register from './Register/Register';
 import Tvshow from './Tvshow/Tvshow';
 import Notfound from './Notfound/Notfound';
+import Logout from './Logout/Logout';
 function App() {
   return(<>
   <Navbar/>
@@ -20,12 +21,13 @@ function App() {
   <Route path='/' element={<Register/>}/>
     <Route path='Home' element={<Home/>} />
     <Route path='About' element={<About/>}/>
-    <Route path='Login' element={<Login/>}/>
     <Route path='Movies' element={<Movies/>}/>
     <Route path='Network' element={<Network/>}/>
     <Route path='People' element={<People/>}/>
-    <Route path='Register' element={<Register/>}/>
     <Route path='Tvshow' element={<Tvshow/>}/>
+    <Route path='Register' element={<Register/>}/>
+    <Route path='Login' element={<Login/>}/>
+    <Route path='Logout' element={<Logout/>}/>
     <Route path='**' element={<Notfound/>}/>
   </Routes>
   
