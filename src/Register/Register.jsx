@@ -1,3 +1,4 @@
+import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import {mystyle} from './style.module.css'
 export default function Register() {
@@ -25,20 +26,29 @@ export default function Register() {
     setuser (useratacopy)  // pass deep copy to updater function 
   }
              
-useEffect(()=>{
-  console.table(userdata);  
-}  
-,[userdata])
+// useEffect(()=>{
+//   // console.table(userdata);  
+// }  
+// ,[userdata])
+
+async function senduser(info){
+   info.preventDefault()
+  let {data}= await axios.post('https://route-egypt-api.herokuapp.com/signup',userdata)
+  console.log(data);
+  
+}
   
   return (
     <>
     <div className='container mt-3'>
       <h1 className='text-center text-capitalize mb-3'>Register Form</h1>
-      <form className='w-50 m-auto p-4 ' action="">
+      <form className='w-50 m-auto p-4 ' action="" onSubmit={(EI)=>{
+        senduser(EI)
+        
+        }}>
         
         <label htmlFor="fname" className='mb-2'>First Name :</label>
         <input id='fname' type="text" className='form-control mb-2' name='first_name' onChange={(e)=>{
-          
           adduser(e.target)
         }} />
         
@@ -63,7 +73,7 @@ useEffect(()=>{
           adduser(e.target)
         }} />
         
-        <button className='btn btn-info'>Register</button>
+        <button type='onSubmit' className='btn btn-info'>Register</button>
       </form>
       
     </div>
