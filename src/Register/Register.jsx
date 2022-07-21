@@ -1,9 +1,10 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
+import Joi from 'joi'
 import {mystyle} from './style.module.css'
 export default function Register() {
-  
-  let[userdata,setuser]=useState({
+  // state
+  const[userdata,setuser]=useState({
     
       "first_name":"",
       "last_name":"",
@@ -12,6 +13,8 @@ export default function Register() {
       "age":""
 
   })
+ 
+
   // shollow copy not working with updating state 
   // function adduser(x){
   //   userdata.first_name=x   
@@ -30,18 +33,37 @@ export default function Register() {
 //   // console.table(userdata);  
 // }  
 // ,[userdata])
-
+const [msg,setmsg]=useState('')
 async function senduser(info){
    info.preventDefault()
-  let {data}= await axios.post('https://route-egypt-api.herokuapp.com/signup',userdata)
-  console.log(data);
-  
+   if(validation()===true){
+      let {data}= await axios.post('https://route-egypt-api.herokuapp.com/signup',userdata)
+      console.log(data); 
+      setmsg(data.message)
+    }else{}
 }
-  
+// state
+const [errors,seterrors]=useState([])
+function validation(){
+  let rules=Joi.object({
+    "first_name": Joi.string().alphanum().min(3).max(30).required(),
+    "last_name":Joi.string().alphanum().min(3).max(30).required(),
+    "email":Joi.string().email({ minDomainSegments: 2, tlds: { allow: ['com', 'net'] } }).required(),
+    "password":Joi.string().pattern(new RegExp('^[a-zA-Z0-9]{3,30}$')).required(),
+    "age":Joi.number().min(20).max(60).required()
+  })
+// let validationresult=  rules.validate(userdata,{abortEarly:true}) 
+let validationresult=  rules.validate(userdata,{abortEarly:false})
+console.log(validationresult.error.details);
+if (validationresult.error !==undefined) {
+  seterrors(validationresult.error.details)
+  return true;
+}else{return false}}
   return (
     <>
     <div className='container mt-3'>
       <h1 className='text-center text-capitalize mb-3'>Register Form</h1>
+      {errors.length!==0? errors.map((error)=>{return <p className='text-danger'>{error.message}</p>}):""}
       <form className='w-50 m-auto p-4 ' action="" onSubmit={(EI)=>{
         senduser(EI)
         
@@ -69,11 +91,12 @@ async function senduser(info){
         }}/>
         
         <label htmlFor="password" className='mb-2'>Password :</label>
-        <input id='password' type="text" className='form-control mb-2' name='password' onChange={(e)=>{
+        <input id='password' type="text" className='form-control mb-4' name='password' onChange={(e)=>{
           adduser(e.target)
         }} />
         
         <button type='onSubmit' className='btn btn-info'>Register</button>
+        <h3 className='text-success'>{msg}</h3>
       </form>
       
     </div>
