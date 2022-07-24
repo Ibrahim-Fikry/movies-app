@@ -4,6 +4,7 @@ import {useNavigate}  from 'react-router-dom'
 import Joi from 'joi'
 import {mystyle} from './style.module.css'
 import Login from './../Login/Login';
+
 export default function Register() {
   
   //#region  add  set user function updater >>>   adduser(x)
@@ -55,24 +56,28 @@ if (validationresult.error !==undefined) {
 //   // console.table(userdata);  
 // }  
 // ,[userdata])
-let navigation = useNavigate()
-// state
+
+let navigation = useNavigate( )
 const [msg,setmsg]=useState('')
+const [btnspin,setbtnspin]=useState(true)
+
 async function senduser(info){
    info.preventDefault()
+   setbtnspin(false)
    if(validation()=== true){
-    
+
       // let response = await axios.post('https://route-egypt-api.herokuapp.com/signup',userdata)
       let {data}= await axios.post('https://route-egypt-api.herokuapp.com/signup',userdata)
+      setbtnspin(true)
       console.log('ibrahim',data); 
-      setmsg(data.message)
-      // if (data.message === 'success') {
-      //   navigation('/Login')
-      // }
-      // else
-      // {
-      //   setmsg(data.message)
-      // }
+      // setmsg(data.message)
+      if (data.message === 'success') {
+        navigation('/Login')
+      }
+      else
+      {
+        setmsg(data.message)
+      }
     }
     
 }
@@ -119,11 +124,11 @@ return (
 
         
         <label htmlFor="password" className='mb-2 mt-2'>Password :</label>
-        <input id='password' type="password" className='form-control ' name='password' onChange={e=>adduser(e.target)} />
+        <input id='password' type="text" className='form-control ' name='password' onChange={e=>adduser(e.target)} />
         {errors.length!==0?errors.map((error)=> error.message.includes('password')? <h6 className='text-danger'>{error.message}</h6>:""):""}
 
         
-        <button type='onSubmit' className='btn btn-info mt-2'>Register</button>
+        <button type='onSubmit' className='btn btn-info mt-2'>{ btnspin? 'Register': <i className='fas fa-spin fa-spinner fa-1x'></i>}</button>
         <h3 className='text-success'>{msg}</h3>
       </form>
       
