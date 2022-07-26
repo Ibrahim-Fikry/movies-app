@@ -13,6 +13,7 @@ import Register from './Register/Register';
 import Tvshow from './Tvshow/Tvshow';
 import Notfound from './Notfound/Notfound';
 import Logout from './Logout/Logout';
+import SingleMovie from './singlemovie/SingleMovie';
 function App() {
   return(<>
   <Navbar/>
@@ -20,6 +21,7 @@ function App() {
   <Routes>
   <Route path='/' element={<Register/>}/>
     <Route path='Home' element={<Home/>} />
+    <Route path='Movie/:movieId' element={<SingleMovie/>} />
     <Route path='About' element={<About/>}/>
     <Route path='Movies' element={<Movies/>}/>
     <Route path='Network' element={<Network/>}/>
