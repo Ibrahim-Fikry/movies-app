@@ -13,7 +13,7 @@ export default function Home() {
  async function getdata(mediatype,setterfunction){
  let {data}= await axios.get('https://api.themoviedb.org/3/trending/'+mediatype+'/day?api_key=a5208e5b49c6070ccb08e9c12afd5949')
  setterfunction(data.results);
- console.log(movies);
+//  console.log(movies);
 }
 // async function gettvs(){
 //   let {data}= await axios.get('https://api.themoviedb.org/3/trending/tv/day?api_key=a5208e5b49c6070ccb08e9c12afd5949')

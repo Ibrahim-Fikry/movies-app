@@ -25,17 +25,17 @@ export default function Movies() {
           <div className='border border-primary w-75 mt-4 '></div>
           </div>
           </div>
-           {movies.map(movie=> 
+           {movies.map((movie,index)=> 
             <>
-              <div className='col-md-2'>
-              {/* <Link to='Movie'>  rong   */}
-              <Link to={`/Movie/${movie.id}`}>
-              <div>
-                <img  src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} className='w-100' alt="" />
-                <p>{movie.title}</p>
-                 
-              </div>
-              </Link>
+              <div key={index} className='col-md-2' >
+                {/* <Link to='Movie'>  rong   */}
+                <Link to={`/Movie/${movie.id}`}>
+                <div>
+                  <img  src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} className='w-100' alt="" />
+                  <p>{movie.title}</p>
+                   
+                </div>
+                </Link>
               </div>
             </>
           )

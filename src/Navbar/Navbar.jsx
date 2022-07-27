@@ -1,6 +1,15 @@
-import React from 'react'
-import {Link,NavLink} from'react-router-dom'
-export default function Navbar() {
+import {React} from 'react'
+import {Link,NavLink,useNavigate} from'react-router-dom'
+export default function Navbar({islogin,checklogin}) {
+  // let navigation=useNavigate()
+  function funclogout() {
+   localStorage.removeItem('mytoken')
+   checklogin()
+  //  navigation('/Login')
+    
+   
+  }
+
   return (
     <>
     <nav className="navbar navbar-expand-lg navbar-dark bg-transparent shadow ">
@@ -11,6 +20,8 @@ export default function Navbar() {
         </button>
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+          {islogin!==null? 
+          <>
             <li className="nav-item">
               <NavLink  style={({isActive})=>{return{
                 backgroundColor: isActive? "lightslategrey":"",
@@ -58,6 +69,8 @@ export default function Navbar() {
               }}} className="nav-link active" aria-current="page" to='Network'>Networks</NavLink>
             </li>
 
+          </>:''
+        }
 
           </ul>
           {/* <form className="d-flex">
@@ -76,8 +89,9 @@ export default function Navbar() {
               <i className='fab fa-spotify  mx-2 fa-2x'></i>
             </li>
 
-         
-            <li className="nav-item">
+         {/* islogin come from prop export default function Navbar({islogin}) { */}
+             {islogin == null?<>
+              <li className="nav-item">
               <NavLink  style={({isActive})=>{return{
                 backgroundColor: isActive? "lightslategrey":"",
                 borderRadius:'5%',
@@ -91,14 +105,18 @@ export default function Navbar() {
                 
               }}} className="nav-link active" aria-current="page" to='Login'>Login</NavLink>
             </li>
-
-            <li className="nav-item">
-              <NavLink  style={({isActive})=>{return{
-                backgroundColor: isActive? "lightslategrey":"",
-                borderRadius:'5%',
-                
-              }}} className="nav-link active" aria-current="page" to='Logout'>LogOut</NavLink>
-            </li>
+             </>:""}
+           {islogin!==null?
+           <> <li className="nav-item">
+           <NavLink  style={({isActive})=>{return{
+             backgroundColor: isActive? "lightslategrey":"",
+             borderRadius:'5%',
+           }}} className="nav-link active" aria-current="page"  to='Login'>
+             <a onClick={funclogout} href>LogOut</a>
+             </NavLink>
+         </li></>
+           :''}
+           
 
 
 

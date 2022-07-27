@@ -4,7 +4,11 @@ import axios from 'axios'
 import  Joi  from 'joi';     //  right import
 import { useNavigate } from 'react-router-dom';
 
-export default function Login() {
+// export default function Login(props) {
+  //   props return object conatin data from parent 
+  // you cna use destructring insted   of  props .checklogin
+  // 
+export default function Login({checklogin}) {
   
 //#region  add  set user function updater >>>   adduser(x)
 
@@ -59,9 +63,13 @@ async function senduser(info){
     // let response = await axios.post('https://route-egypt-api.herokuapp.com/signup',userdata)
     let {data}= await axios.post('https://route-egypt-api.herokuapp.com/signin',userdata)
     setbtnspin(true)
-    console.log('ibrahim',data.message); 
+    // console.log('ibrahim',data); 
     // setmsg(data.message)
     if (data.message === 'success') {
+      localStorage.setItem("mytoken",data.token)
+      // checklogin come from props of login component
+      //  export default function Login({checklogin}) 
+      checklogin()
       navigation('/Home')
     }
     else
@@ -76,7 +84,7 @@ async function senduser(info){
 
 //#region     component function Register()  return
 
-  
+
   return (
     <>
     <div className='container mt-3'>
