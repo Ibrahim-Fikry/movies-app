@@ -96,12 +96,12 @@ async function senduser(info){
       <form className='w-50 m-auto p-3 ' action=""  onSubmit={EI=>senduser(EI)}> 
              
         <label htmlFor="email" className='mb-2 mt-2'>Email :</label>
-        <input id='email' type="text" className='form-control ' name='email' onChange={e=>adduser(e.target)}/>
+        <input id='email' type="text" className='form-control ' name='email' onChange={e=>adduser(e.target)}autoComplete='off'/>
         {errors.length!==0?errors.map((error)=> error.message.includes('email')? <h6 className='text-danger'>{error.message}</h6>:""):""}
 
         
         <label htmlFor="password" className='mb-2 mt-2'>Password :</label>
-        <input id='password' type="text" className='form-control ' name='password' onChange={e=>adduser(e.target)} />
+        <input id='password' type="password" className='form-control ' name='password' onChange={e=>adduser(e.target)} autoComplete='off'  />
         {/* {errors.length!==0?errors.map((error)=> error.message.includes('password')? <h6 className='text-danger'>{error.message}</h6>:""):""} */}
         {errors.length!==0?errors.map((error)=><h6 className='text-danger'>{error.message}</h6>):""}
 

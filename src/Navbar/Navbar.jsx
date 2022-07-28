@@ -1,4 +1,5 @@
-import {React} from 'react'
+import jwtDecode from 'jwt-decode'
+import {React,useEffect,useState} from 'react'
 import {Link,NavLink,useNavigate} from'react-router-dom'
 export default function Navbar({islogin,checklogin}) {
   // let navigation=useNavigate()
@@ -9,12 +10,27 @@ export default function Navbar({islogin,checklogin}) {
     
    
   }
+ 
+  let[tokendata,settokendata]=useState('')
+  let usertoken=localStorage.getItem('mytoken')
+ useEffect(()=>{
+  if (usertoken!=null) {
+    let userdata=jwtDecode(usertoken)
+    // console.log(userdata);
+    settokendata(userdata.first_name)
+  }else{
+    settokendata('')
+  }
+ },[usertoken])
+  
 
   return (
     <>
     <nav className="navbar navbar-expand-lg navbar-dark bg-transparent shadow ">
       <div className="container "> 
-        <Link className="navbar-brand" to='Home'>Movies App</Link>
+
+     
+        <Link className="navbar-brand" to='Home'> <i className='fa-solid fa-users fa-1x text-info'></i> <span className='text-info'>{tokendata}</span> </Link>
         <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span className="navbar-toggler-icon"></span>
         </button>
