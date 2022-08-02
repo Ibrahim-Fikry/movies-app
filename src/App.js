@@ -18,6 +18,7 @@ import SingleMovie from './singlemovie/SingleMovie';
 import ProtectedRoute from './protectedroute/ProtectedRoute';
 // handel context
 import ApiContextProvider from './context/ApiContextProvider';
+import SingleTvshow from './Tvshow/SingleTvshow';
 function App() {
   let [islogin,setislogin]=useState(null)
   function checklogin(){
@@ -48,7 +49,9 @@ function App() {
              
              <Route path='Network' element={<ProtectedRoute><Network/></ProtectedRoute>}/>
              <Route path='People' element={<ProtectedRoute><People/></ProtectedRoute>}/>
+             
              <Route path='Tvshow' element={<ProtectedRoute><Tvshow/></ProtectedRoute>}/>
+             <Route path='Tvshow/:TvshowId' element={<ProtectedRoute><SingleTvshow/></ProtectedRoute>} />
   
     <Route path='Register' element={<Register/>}/>
     <Route path='Login' element={<Login checklogin={checklogin}  />}/>
