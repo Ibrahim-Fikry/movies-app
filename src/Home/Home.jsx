@@ -1,20 +1,30 @@
 // import React from 'react'
-import {React, useState ,useEffect} from 'react'
+import {React,useEffect, useContext} from 'react'
 import axios from 'axios'
-import Movies from './../Movies/Movies';
+// import Movies from './../Movies/Movies';
+import { ApiContext } from '../context/Apicontext';
+import { useState } from 'react';
+
 
 
 export default function Home() {
+  // using context
+  let {movies, setmovies,tvs, settvs,persons, settperson,getdata}=useContext(ApiContext)
   
-  const [movies, setmovies]=useState([])
-  const [tvs, settvs]=useState([])
-  const [persons, settperson]=useState([])
   
- async function getdata(mediatype,setterfunction){
- let {data}= await axios.get('https://api.themoviedb.org/3/trending/'+mediatype+'/day?api_key=a5208e5b49c6070ccb08e9c12afd5949')
- setterfunction(data.results);
-//  console.log(movies);
-}
+  
+  // 2- using  function with parameters
+//   const [movies, setmovies]=useState([])
+//   const [tvs, settvs]=useState([])
+//   const [persons, settperson]=useState([])
+  
+//  async function getdata(mediatype,setterfunction){
+//  let {data}= await axios.get('https://api.themoviedb.org/3/trending/'+mediatype+'/day?api_key=a5208e5b49c6070ccb08e9c12afd5949')
+//  setterfunction(data.results);
+// //  console.log(movies);
+// }
+// ---------------------------------
+// 1-first code senario
 // async function gettvs(){
 //   let {data}= await axios.get('https://api.themoviedb.org/3/trending/tv/day?api_key=a5208e5b49c6070ccb08e9c12afd5949')
 //   settvs(data.results);

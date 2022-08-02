@@ -1,16 +1,20 @@
-import {React,useState,useEffect} from 'react'
+import {React,useEffect,useContext} from 'react'
+
 import {Link} from 'react-router-dom'
-import axios from 'axios'
+
+import { ApiContext } from './../context/Apicontext';
+
 export default function Movies() {
+  let {movies,setmovies,getdata}=useContext(ApiContext)
   
-  const [movies, setmovies]=useState([])
-  async function getdata(){
-    let {data}= await axios.get('https://api.themoviedb.org/3/trending/movie/day?api_key=a5208e5b49c6070ccb08e9c12afd5949')
-    setmovies(data.results);
-    // console.log('ibrahim',movies);
-   }
+  // const [movies, setmovies]=useState([])
+  // async function getdata(){
+  //   let {data}= await axios.get('https://api.themoviedb.org/3/trending/movie/day?api_key=a5208e5b49c6070ccb08e9c12afd5949')
+  //   setmovies(data.results);
+  //   // console.log('ibrahim',movies);
+  //  }
    useEffect(()=>{
-    getdata()
+    getdata('movie',setmovies)
    })
   return (
     <>
@@ -26,7 +30,7 @@ export default function Movies() {
           </div>
           </div>
            {movies.map((movie,index)=> 
-            <>
+            
               <div key={index} className='col-md-2' >
                 {/* <Link to='Movie'>  rong   */}
                 <Link to={`/Movie/${movie.id}`}>
@@ -37,7 +41,7 @@ export default function Movies() {
                 </div>
                 </Link>
               </div>
-            </>
+            
           )
             }
         </div>

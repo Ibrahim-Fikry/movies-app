@@ -14,8 +14,10 @@ import Tvshow from './Tvshow/Tvshow';
 import Notfound from './Notfound/Notfound';
 import Logout from './Logout/Logout';
 import SingleMovie from './singlemovie/SingleMovie';
-import  jwtDecode  from 'jwt-decode';
+// import  jwtDecode  from 'jwt-decode';
 import ProtectedRoute from './protectedroute/ProtectedRoute';
+// handel context
+import ApiContextProvider from './context/ApiContextProvider';
 function App() {
   let [islogin,setislogin]=useState(null)
   function checklogin(){
@@ -29,25 +31,32 @@ function App() {
     
   },[islogin])
   return(<>
+
   {/* islogin={islogin} */}
   <Navbar islogin={islogin} checklogin={checklogin}  />
-  
+  <ApiContextProvider>
   <Routes>
   <Route path='/' element={<Register/>}/>
-    <Route path='Home' element={<ProtectedRoute><Home/></ProtectedRoute>}/>
-    {/* dynamic routing */}
-    <Route path='Movie/:movieId' element={<ProtectedRoute><SingleMovie/></ProtectedRoute>} />
-    <Route path='About' element={<ProtectedRoute><About/></ProtectedRoute>}/>
-    <Route path='Movies' element={<ProtectedRoute><Movies/></ProtectedRoute>}/>
-    <Route path='Network' element={<ProtectedRoute><Network/></ProtectedRoute>}/>
-    <Route path='People' element={<ProtectedRoute><People/></ProtectedRoute>}/>
-    <Route path='Tvshow' element={<ProtectedRoute><Tvshow/></ProtectedRoute>}/>
+  {/* context setting */}
+      
+             <Route path='Home' element={<ProtectedRoute><Home/></ProtectedRoute>}/>
+             {/* dynamic routing */}
+             <Route path='Movie/:movieId' element={<ProtectedRoute><SingleMovie/></ProtectedRoute>} />
+             <Route path='About' element={<ProtectedRoute><About/></ProtectedRoute>}/>
+             
+             <Route path='Movies' element={<ProtectedRoute><Movies/></ProtectedRoute>}/>
+             
+             <Route path='Network' element={<ProtectedRoute><Network/></ProtectedRoute>}/>
+             <Route path='People' element={<ProtectedRoute><People/></ProtectedRoute>}/>
+             <Route path='Tvshow' element={<ProtectedRoute><Tvshow/></ProtectedRoute>}/>
+  
     <Route path='Register' element={<Register/>}/>
     <Route path='Login' element={<Login checklogin={checklogin}  />}/>
     <Route path='Logout' element={<Logout/>}/>
     <Route path='**' element={<Notfound/>}/>
   </Routes>
-  
+ </ApiContextProvider>
+
   </>)
 }
 
