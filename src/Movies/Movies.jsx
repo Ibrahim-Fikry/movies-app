@@ -13,6 +13,7 @@ export default function Movies() {
   //   setmovies(data.results);
   //   // console.log('ibrahim',movies);
   //  }
+  
    useEffect(()=>{
     getdata('movie',setmovies)
    })
@@ -33,13 +34,17 @@ export default function Movies() {
             
               <div key={index} className='col-md-2' >
                 {/* <Link to='Movie'>  rong   */}
-                <Link to={`/Movie/${movie.id}`}>
+               
                 <div>
+                <Link to={`/Movie/${movie.id}`}>
                   <img  src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} className='w-100' alt="" />
-                  <p>{movie.title}</p>
+                  
+                  </Link>
+                  <p className='w-100'>{movie.title}</p>
+                  {/* <h4 className='text-decoration-none'>{movie.title}</h4> */}
                    
                 </div>
-                </Link>
+               
               </div>
             
           )

@@ -119,16 +119,17 @@ useEffect(()=>{
           </div>
           </div>
           {/* 7al tany 3alchan a3rd 9 movies */}
-          {persons.slice(0 , 10).map((person) => {
-            return(
-              <div className='col-md-2'>
-              <div>
+          {persons.slice(0 , 12).map((person,index) => 
+          person.profile_path !== null?
+              <div key={index} className='col-md-2'>
+              <div >
                 <img src={`https://image.tmdb.org/t/p/w500${person.profile_path}`} className='w-100' alt="not found" />
-                <h4>{person.title}</h4>
+                <h4 className='text-capitalize text-decoration-none'>{person.title}</h4>
               </div>
               </div>
+              :''
             )
-          })}
+          }
            {/* {persons.map((person,index) => {
             return(
               index <= 9?<div className='col-md-2'>
